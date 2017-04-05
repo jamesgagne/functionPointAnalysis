@@ -16,22 +16,18 @@ function promptOutputs() { status = "Number of User Outputs"; }
 function promptInquiries() { status = "Number of User Inquiries"; }
 function promptFiles() { status = "Number of Files"; }
 function promptInterfaces() { status = "Number of External Interfaces"; }
-
 // In JavaScript 1.1, parseInt returns NaN (recognizable via isNaN() for non-integers. But JavaScript 1.0
 // returns 0 and doesn't have an isNaN routine. Since comparisons to NaN always fail, the > 0 test
 // works on either version.
-
 function isInt(string) {
  var val = parseInt(string);
  return(val > 0);
 } // isInt()
-
 // Three tests:
 // 1) userInputs, userOutputs, userInquiries, numberFiles, and externalInterfaces are an integer.
 // 2) Weighting factor is not missing.
 // 3) Rating for each factor should be in a range from 0 to 5.
 // If any of the tests fails, calculation is canceled.
-
 function checkDataEntry() {
   var userInputs = document.mainForm.userInputs;
   if (!isInt(userInputs.value) && userInputs.value!=0) {
@@ -66,11 +62,9 @@ function checkDataEntry() {
    return(false); 
   } //if
 } //checkDataEntry 
-
 function calculate() {
 // If data entry looks OK, calculate form. 
     var countTotal = 0, factorTotal = 0; 
-
 	// calculate countTotal  
     if (mainForm.userInputsWeight[0].checked) mainForm.T1.value = 3 * mainForm.userInputs.value ;
     if (mainForm.userInputsWeight[1].checked) mainForm.T1.value = 4 * mainForm.userInputs.value ;    
@@ -91,7 +85,6 @@ function calculate() {
     if (mainForm.numberFilesWeight[1].checked) mainForm.T4.value = 10 * mainForm.numberFiles.value ;    
     if (mainForm.numberFilesWeight[2].checked) mainForm.T4.value = 15 * mainForm.numberFiles.value ;
     countTotal = countTotal + parseInt(mainForm.T4.value);
-
     if (mainForm.externalInterfacesWeight[0].checked) mainForm.T5.value = 5 * mainForm.externalInterfaces.value ;
     if (mainForm.externalInterfacesWeight[1].checked) mainForm.T5.value = 7 * mainForm.externalInterfaces.value ;    
     if (mainForm.externalInterfacesWeight[2].checked) mainForm.T5.value = 10 * mainForm.externalInterfaces.value ;
@@ -101,14 +94,12 @@ function calculate() {
     
     // calculate the sum of the factor rates 
     for (var i=0; i<14; i++) factorTotal = factorTotal + parseInt(mainForm.F1[i].value);
-
 	// calculate the final result
     mainForm.Result.value = parseInt(countTotal * (0.65 + 0.01 * factorTotal)) + " FP";
 } // calculate 
 </script>
 
 <script language="JavaScript1.1">
-
 function generateInfo(mode)
 {
     if (mode==1) infoWindow1=window.open("userinputs.html","info1Window",
@@ -122,7 +113,6 @@ function generateInfo(mode)
     if
 (mode==5) infoWindow3=window.open("externalinterfaces.html","info5Window", "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=yes, copyhistory=no");
 } // generateInfo
-
 </script>
 </head>
 
@@ -159,7 +149,12 @@ FP data is used in two ways:</p>
     <td width="11%" align="center" height="21"><b>Complex</b></td>
     <td width="52%" height="21" align="right"></td>
   </tr>
+	  <tr><td width = "25%" height="27" align = "left"><select><option value="5">PHP</option>
+  <option value="6">C#</option>
+  <option value="6">JAVA</option>
+  <option value="6">PYHTON</option></select></td></tr>
   <tr>
+  
     <td width="25%" height="27" align="left"><input type="button" value="  Number of User Inputs " onclick="generateInfo(1)"></td>
     <td width="21%" height="27"><input type="text" name="userInputs" onfocus="promptInputs()" onblur="clearStatus()" size="6" value="0">
       x  </td>
