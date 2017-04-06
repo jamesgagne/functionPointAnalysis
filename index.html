@@ -96,6 +96,12 @@ function calculate() {
     for (var i=0; i<14; i++) factorTotal = factorTotal + parseInt(mainForm.F1[i].value);
 	// calculate the final result
     mainForm.Result.value = parseInt(countTotal * (0.65 + 0.01 * factorTotal)) + " FP";
+    
+    //calculate time
+    var languageSelection = document.getElementById("language");
+    var languageVal = languageSelection.options[languageSelection.selectedIndex].value;	
+
+    document.getElementById("resultHours").value = (((countTotal/(languageVal * 20))*30)*24);
 } // calculate 
 </script>
 
