@@ -97,7 +97,7 @@ function calculate() {
 	// calculate the final result
     mainForm.Result.value = parseInt(countTotal * (0.65 + 0.01 * factorTotal)) + " FP";
 	
-	document.getElementByid("resultHours").innerHTML = (countTotal/(6 * 20));
+	document.getElementById("resultHours").value = (countTotal/(6 * 20));
 } // calculate 
 </script>
 
