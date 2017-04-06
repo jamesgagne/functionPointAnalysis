@@ -1,3 +1,22 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @owen-bryan
+ Sign out
+ Watch 2
+  Star 0
+  Fork 6 jamesgagne/functionPointAnalysis
+forked from rhildred/functionPointAnalysis
+ Code  Pull requests 1  Projects 0  Wiki  Pulse  Graphs
+Branch: owen-bryan-pat… Find file Copy pathfunctionPointAnalysis/index.html
+277d1f9  2 minutes ago
+@owen-bryan owen-bryan Update index.html
+3 contributors @jamesgagne @salesucation @owen-bryan
+RawBlameHistory     
+334 lines (311 sloc)  17 KB
 
 <!-- saved from url=(0087)http://groups.engin.umd.umich.edu/CIS/course.des/cis525/js/f00/artan/functionpoints.htm -->
 <html data-ember-extension="1"><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
@@ -96,8 +115,10 @@ function calculate() {
     for (var i=0; i<14; i++) factorTotal = factorTotal + parseInt(mainForm.F1[i].value);
 	// calculate the final result
     mainForm.Result.value = parseInt(countTotal * (0.65 + 0.01 * factorTotal)) + " FP";
+	var languageSelection = document.getElementById("language");
+	var languageVal = languageSelection.options[languageSelection.selectedIndex].value;	
 	
-	document.getElementById("resultHours").value = (countTotal/(6 * 20));
+	document.getElementById("resultHours").value = (((countTotal/(languageVal * 20))*30)*24);
 } // calculate 
 </script>
 
@@ -144,7 +165,7 @@ FP data is used in two ways:</p>
   </tr>
   <tr>
 	  <td width = "25%" height="27" align = "left">Language</td><td width="21%" height="21">
-	  <select name="language"><option value="5">PHP</option>
+	  <select name="language" id="language"><option value="5">PHP</option>
   		<option value="6">C#</option>
   		<option value="6">JAVA</option>
   		<option value="6">PYHTON</option>
@@ -331,3 +352,5 @@ measurement parameters will be available.</p>
 
 
 </body></html>
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
