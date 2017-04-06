@@ -96,6 +96,8 @@ function calculate() {
     for (var i=0; i<14; i++) factorTotal = factorTotal + parseInt(mainForm.F1[i].value);
 	// calculate the final result
     mainForm.Result.value = parseInt(countTotal * (0.65 + 0.01 * factorTotal)) + " FP";
+	
+	document.getElementByid("resultHours").innerHTML = (countTotal/(6 * 20));
 } // calculate 
 </script>
 
@@ -315,7 +317,7 @@ measurement parameters will be available.</p>
 &nbsp;Function Points
 </p>
 	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; This should take:&nbsp;
-<input type="text" name="resultHours" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
+<input type="text" name="resultHours" id="resultHours" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
 &nbsp;hours
 </p>
 	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; And should cost around $
