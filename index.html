@@ -96,6 +96,10 @@ function calculate() {
     for (var i=0; i<14; i++) factorTotal = factorTotal + parseInt(mainForm.F1[i].value);
 	// calculate the final result
     mainForm.Result.value = parseInt(countTotal * (0.65 + 0.01 * factorTotal)) + " FP";
+	var languageSelection = document.getElementById("language");
+	var languageVal = languageSelection.options[languageSelection.selectedIndex].value;	
+	
+	document.getElementById("resultHours").value = (((countTotal/(languageVal * 20))*30)*24);
 } // calculate 
 </script>
 
@@ -142,7 +146,7 @@ FP data is used in two ways:</p>
   </tr>
   <tr>
 	  <td width = "25%" height="27" align = "left">Language</td><td width="21%" height="21">
-	  <select name="language"><option value="5">PHP</option>
+	  <select name="language" id="language"><option value="5">PHP</option>
   		<option value="6">C#</option>
   		<option value="6">JAVA</option>
   		<option value="6">PYHTON</option>
@@ -315,7 +319,7 @@ measurement parameters will be available.</p>
 &nbsp;Function Points
 </p>
 	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; This should take:&nbsp;
-<input type="text" name="resultHours" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
+<input type="text" name="resultHours" id="resultHours" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
 &nbsp;hours
 </p>
 	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; And should cost around $
