@@ -100,7 +100,7 @@ function calculate() {
     //calculate time
     var languageSelection = document.getElementById("language");
     var languageVal = languageSelection.options[languageSelection.selectedIndex].value;	
-
+	console.log(((countTotal/(languageVal * 20))*30)*24);
     document.getElementById("resultHours").value = (((countTotal/(languageVal * 20))*30)*24);
 } // calculate 
 </script>
@@ -322,7 +322,7 @@ measurement parameters will be available.</p>
 </p>
 	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; This should take:&nbsp;
 <input type="text" name="resultHours" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
-&nbsp;hours
+&nbsp;months
 </p>
 	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; And should cost around $
 <input type="text" name="resultCost" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
