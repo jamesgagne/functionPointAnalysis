@@ -100,7 +100,7 @@ function calculate() {
     //calculate time
     var languageSelection = document.getElementById("language");
     var languageVal = languageSelection.options[languageSelection.selectedIndex].value; 
-    var isFramework = document.getElementByID("framework").value();
+    var isFramework = document.getElementById("framework").value();
     console.log(isFramework);
     document.getElementById("resultHours").value = (((countTotal/(languageVal * 20))*30));
 } // calculate 
