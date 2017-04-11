@@ -100,7 +100,25 @@ function calculate() {
     
     //calculate time
     var languageSelection = document.getElementById("language");
-    var languageVal = languageSelection.options[languageSelection.selectedIndex].value;	
+    var languageVal;
+	switch (languageSelection.options[languageSelection.selectedIndex].value)
+	{
+		case "PHP":
+			languageVal = 5;
+			break;
+		case "C#":
+			languageVal = 6;
+			break;
+		case "JAVA":
+			languageVal = 6;
+			break;
+		case "PYTHON":
+			languageVal = 6;
+			break;
+		default:
+			languageVal = 0;
+			break;
+	}
 	var personMonths = functionPoints / (1); // need to complete formula
 	var framework = document.getElementById("framework");
 	if (framework.checked)//framework button checked
@@ -115,6 +133,26 @@ function calculate() {
 	var cost = personMonths * costPerMonth.value;
 	mainForm.resultCost.value = parseInt(cost);
 	
+	//calculate lines of code
+	switch (languageSelection.options[languageSelection.selectedIndex].value)
+	{
+		case "PHP":
+			languageVal = 67;
+			break;
+		case "C#":
+			languageVal = 54;
+			break;
+		case "JAVA":
+			languageVal = 53;
+			break;
+		case "PYTHON":
+			languageVal = 53;
+			break;
+		default:
+			languageVal = 0;
+			break;
+	}
+	mainForm.resultLines.value = parseInt(functionPoints * languageVal);
 }
 </script>
 
@@ -161,10 +199,10 @@ FP data is used in two ways:</p>
   </tr>
   <tr>
 	  <td width = "25%" height="27" align = "left">Language</td><td width="21%" height="21">
-	  <select name="language" id="language"><option value="5">PHP</option>
-  		<option value="6">C#</option>
-  		<option value="6">JAVA</option>
-  		<option value="6">PYTHON</option>
+	  <select name="language" id="language"><option value="PHP">PHP</option>
+  		<option value="C#">C#</option>
+  		<option value="JAVA">JAVA</option>
+  		<option value="PYTHON">PYTHON</option>
 	  </select>
 	  </td>
 	  </tr>
