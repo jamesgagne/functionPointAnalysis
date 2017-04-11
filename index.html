@@ -65,7 +65,7 @@ function checkDataEntry() {
 function calculate() {
 // If data entry looks OK, calculate form. 
     var countTotal = 0, factorTotal = 0; 
-  // calculate countTotal  
+	// calculate countTotal  
     if (mainForm.userInputsWeight[0].checked) mainForm.T1.value = 3 * mainForm.userInputs.value ;
     if (mainForm.userInputsWeight[1].checked) mainForm.T1.value = 4 * mainForm.userInputs.value ;    
     if (mainForm.userInputsWeight[2].checked) mainForm.T1.value = 6 * mainForm.userInputs.value ;
@@ -94,16 +94,28 @@ function calculate() {
     
     // calculate the sum of the factor rates 
     for (var i=0; i<14; i++) factorTotal = factorTotal + parseInt(mainForm.F1[i].value);
-  // calculate the final result
-    mainForm.Result.value = parseInt(countTotal * (0.65 + 0.01 * factorTotal)) + " FP";
+	// calculate the final result
+	var functionPoints = countTotal * (0.65 + 0.01 * factorTotal);
+    mainForm.Result.value = parseInt(functionPoints) + " FP";
     
     //calculate time
     var languageSelection = document.getElementById("language");
-    var languageVal = languageSelection.options[languageSelection.selectedIndex].value; 
-    var isFramework = document.getElementById("framework").value;
-    console.log(isFramework);
-    document.getElementById("resultHours").value = (((countTotal/(languageVal * 20))*30));
-} // calculate 
+    var languageVal = languageSelection.options[languageSelection.selectedIndex].value;	
+	var personMonths = functionPoints / (1); // need to complete formula
+	var framework = document.getElementById("framework");
+	if (framework.checked)//framework button checked
+	{
+		personMonths = personMonths / 2;
+	}
+	var numDevelopers = document.getElementById("numDevelopers");
+	mainForm.resultTime.value = parseInt(personMonths / numDevelopers.value);
+	
+	//calculate cost
+	var costPerMonth = document.getElementById("costPerMonth");
+	var cost = personMonths * costPerMonth.value;
+	mainForm.resultCost.value = parseInt(cost);
+	
+}
 </script>
 
 <script language="JavaScript1.1">
@@ -142,32 +154,32 @@ FP data is used in two ways:</p>
 <table border="0" width="87%" cellpadding="2" cellspacing="3" height="204"> 
   <tbody>
     <tr>
-      <td width="25%" height="21" align="left"></td>
-      <td width="21%" height="21"></td>
-      <td width="51%" align="center" height="21" colspan="3"><font size="4"><b>Development Environment</b></font></td>
-      <td width="52%" height="21" align="right"></td>
+    	<td width="25%" height="21" align="left"></td>
+    	<td width="21%" height="21"></td>
+    	<td width="51%" align="center" height="21" colspan="3"><font size="4"><b>Development Environment</b></font></td>
+    	<td width="52%" height="21" align="right"></td>
   </tr>
   <tr>
-    <td width = "25%" height="27" align = "left">Language</td><td width="21%" height="21">
-    <select name="language" id="language"><option value="5">PHP</option>
-      <option value="6">C#</option>
-      <option value="6">JAVA</option>
-      <option value="6">PYHTON</option>
-    </select>
-    </td>
-    </tr>
-    <tr>
-    <td width = "25%" height="27" align = "left">Will you be using a Framework?</td>
-    <td width="21%" height="21"><input type="checkbox" name="framework" id="framework" value="2"/>&nbsp; Yes</td>
-    </tr>
-    <tr>
-    <td width = "25%" height="27" align = "left">Developers Cost per month</td>
-    <td width="21%" height="21"><input type="number" name="costPerMonth" step="0.01"/></td>
-    </tr>
-     <tr>
-    <td width = "25%" height="27" align = "left">Number of Developers</td>
-    <td width="21%" height="21"><input type="number" name="numberOfDevelopers" /></td>
-    </tr>
+	  <td width = "25%" height="27" align = "left">Language</td><td width="21%" height="21">
+	  <select name="language" id="language"><option value="5">PHP</option>
+  		<option value="6">C#</option>
+  		<option value="6">JAVA</option>
+  		<option value="6">PYTHON</option>
+	  </select>
+	  </td>
+	  </tr>
+	  <tr>
+	  <td width = "25%" height="27" align = "left">Will you be using a Framework?</td>
+	  <td width="21%" height="21"><input type="checkbox" name="framework" id="framework" value="2"/>&nbsp; Yes</td>
+	  </tr>
+	  <tr>
+	  <td width = "25%" height="27" align = "left">Developers Cost per month</td>
+	  <td width="21%" height="21"><input type="number" name="costPerMonth" id="costPerMonth" step="0.01"/></td>
+	  </tr>
+	   <tr>
+	  <td width = "25%" height="27" align = "left">Number of Developers</td>
+	  <td width="21%" height="21"><input type="number" name="numDevelopers" id="numDevelopers"/></td>
+	  </tr>
   
   <tr>
     <td width="25%" height="21" align="left"></td>
@@ -321,14 +333,19 @@ measurement parameters will be available.</p>
 <input type="text" name="Result" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
 &nbsp;Function Points
 </p>
-  <p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; This should take:&nbsp;
-<input type="text" name="resultHours" id = "resultHours" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
+	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; This should take:&nbsp;
+<input type="text" name="resultTime" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
 &nbsp;months
 </p>
-  <p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; And should cost around $
+
+	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; And should cost around $
 <input type="text" name="resultCost" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
 </p>
-  
+
+	<p><i><u><font size="4"><b>Result</b>.</font></u></i>&nbsp; And require&nbsp;
+<input type="text" name="resultLines" disabled="" size="10" style="font-weight: bold; font-size: 14pt; font-family: Arial; border-style: inset">
+&nbsp;lines of code
+</p>
 </form>
 
 
