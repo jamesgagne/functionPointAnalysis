@@ -100,8 +100,8 @@ function calculate() {
     //calculate time
     var languageSelection = document.getElementById("language");
     var languageVal = languageSelection.options[languageSelection.selectedIndex].value; 
-  console.log(((countTotal/(languageVal * 20))*30));
-  console.log(languageVal);
+    var isFramework = document.getElementByID("framework").value();
+    console.log(isFramework);
     document.getElementById("resultHours").value = (((countTotal/(languageVal * 20))*30));
 } // calculate 
 </script>
@@ -158,7 +158,7 @@ FP data is used in two ways:</p>
     </tr>
     <tr>
     <td width = "25%" height="27" align = "left">Will you be using a Framework?</td>
-    <td width="21%" height="21"><input type="checkbox" name="framework" value="2"/>&nbsp; Yes</td>
+    <td width="21%" height="21"><input type="checkbox" name="framework" id="framework" value="2"/>&nbsp; Yes</td>
     </tr>
     <tr>
     <td width = "25%" height="27" align = "left">Developers Cost per month</td>
