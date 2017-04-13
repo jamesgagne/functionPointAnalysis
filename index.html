@@ -161,6 +161,10 @@ function calculate() {
 			break;
 	}
 	mainForm.resultLines.value = parseInt(functionPoints * languageVal);
+	if(framework.checked)
+	{
+		mainForm.resultLines.value = parseInt(mainForm.resultLines.value) * 0.8;
+	}
 }
 </script>
 
