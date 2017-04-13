@@ -96,6 +96,14 @@ function calculate() {
     for (var i=0; i<14; i++) factorTotal = factorTotal + parseInt(mainForm.F1[i].value);
 	// calculate the final result
 	var functionPoints = countTotal * (0.65 + 0.01 * factorTotal);
+	
+	//if function points override contains a value, use that value instead of the calculated one
+	var functionPointsOverride = document.getElementById("functionPointsOverride");
+	if(functionPointsOverride.value != "")
+	{
+		functionPoints = functionPointsOverride.value;
+	}
+
     mainForm.Result.value = parseInt(functionPoints) + " FP";
     
     //calculate time
@@ -119,7 +127,7 @@ function calculate() {
 			languageVal = 0;
 			break;
 	}
-	var personMonths = functionPoints / (languageVal * 20); // need to complete formula
+	var personMonths = functionPoints / (languageVal * 20);
 	var framework = document.getElementById("framework");
 	if (framework.checked)//framework button checked
 	{
@@ -197,6 +205,10 @@ FP data is used in two ways:</p>
     	<td width="51%" align="center" height="21" colspan="3"><font size="4"><b>Development Environment</b></font></td>
     	<td width="52%" height="21" align="right"></td>
   </tr>
+  <tr>
+	  <td width = "25%" height="27" align = "left">Function Points (override)</td>
+	  <td width="21%" height="21"><input type="number" name="functionPointsOverride" id="functionPointsOverride"/></td>
+	  </tr>
   <tr>
 	  <td width = "25%" height="27" align = "left">Language</td><td width="21%" height="21">
 	  <select name="language" id="language"><option value="PHP">PHP</option>
